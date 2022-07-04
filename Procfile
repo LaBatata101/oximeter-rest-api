@@ -1,1 +1,1 @@
-web: uvicorn tim.main:app --host=0.0.0.0 --port=5000
+web: uvicorn oximeter.main:app --host=0.0.0.0 --port=5000
