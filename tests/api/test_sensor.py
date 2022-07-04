@@ -9,7 +9,7 @@ def test_post_sensor_data(client: TestClient):
     data = SensorDataCreate(user_id=0, bpm=88, spo2=99, date=datetime.now())
 
     d = data.dict()
-    d["date"] = d["date"].strftime("%Y-%m-%dT%H:%M:%S%Z")
+    d["date"] = d["date"].strftime("%Y-%m-%dT%H:%M:%S")
 
     response = client.post(
         "/sensor/",

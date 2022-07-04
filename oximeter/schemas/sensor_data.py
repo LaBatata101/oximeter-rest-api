@@ -12,6 +12,15 @@ class SensorDataBase(BaseModel):
 
 class SensorDataCreate(SensorDataBase):
     ...
+    class Config:
+        schema_extra = {
+            "example": {
+                "user_id": 0,
+                "bpm": 95,
+                "spo2": 99,
+                "date": "2022-07-04T20:15:42",
+            }
+        }
 
 
 class SensorData(SensorDataBase):
@@ -19,3 +28,12 @@ class SensorData(SensorDataBase):
 
     class Config:
         orm_mode = True
+        schema_extra = {
+            "example": {
+                "id": 1,
+                "user_id": 0,
+                "bpm": 95,
+                "spo2": 99,
+                "date": "2022-07-04T20:15:42",
+            }
+        }
