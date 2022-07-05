@@ -30,6 +30,10 @@ def get_all_sensor_data(db: Session, skip: int = 0, limit: int = 100) -> list[mo
     return db.query(models.SensorData).offset(skip).limit(limit).all()
 
 
+def get_last_row(db: Session):
+    return db.query(models.SensorData).order_by(models.SensorData.id.desc()).first()
+
+
 def delete_sensor_data(db: Session, *, id: int) -> Optional[models.SensorData]:
     sensor_data = db.query(models.SensorData).get(id)
     if not sensor_data:

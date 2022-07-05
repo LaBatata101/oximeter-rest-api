@@ -19,6 +19,15 @@ def get_all_data(skip: int = Query(0, ge=0), limit: int = Query(100, ge=0), db: 
     return crud.get_all_sensor_data(db, skip, limit)
 
 
+@route.get("/last", response_model=SensorData)
+def get_last_added_data(db: Session = Depends(get_db)):
+    last_data = crud.get_last_row(db)
+    if last_data is None:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
+                            detail="Last added data not found. Database is probably empty!")
+    return last_data
+
+
 @route.get("/{date}", response_model=SensorData)
 def get_data_by_date(date: datetime, db: Session = Depends(get_db)):
     data = crud.get_sensor_data_by_date(db, date)
