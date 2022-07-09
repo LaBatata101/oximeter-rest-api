@@ -18,3 +18,9 @@ def test_post_sensor_data(client: TestClient):
     )
 
     assert response.status_code == 201
+
+
+def test_get_sensor_data_by_day(client: TestClient):
+    response = client.get("/sensor/date", params={"day": 6, "month": 7, "year": 2022})
+    print(response.json())
+    assert response.status_code == 200
